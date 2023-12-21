@@ -5,3 +5,5 @@ venv/
 dist/
 build/
 .env
+credentials.json
+.DS_Store

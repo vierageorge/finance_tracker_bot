@@ -27,7 +27,7 @@ def sned_help_message(message: telebot.types.Message) -> None:
 @bot.message_handler(func=is_valid_user)
 def handle_message(message: telebot.types.Message) -> None:
   if not is_valid_expense_message(message.text):
-    bot.reply_to(message, "Sorry, I don't understand.")
+    bot.reply_to(message, "Sorry, I don't understand. /help for more info.")
     return
   value, media, description = get_expense_components(message.text)
   bot.reply_to(message, f"Value: {value}\nMedia: {media}\nDescription: {description}")
