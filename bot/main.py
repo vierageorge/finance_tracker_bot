@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from utils.validations import is_valid_user, is_valid_expense_message
 from utils.message_processing import get_expense_components
 from utils.messages import GREETING_MESSAGE, NOT_VALID_USER_MESSAGE, HELP_MESSAGE
+from models.expense import Expense
 import logging
 
 # Load .env file and get the bot token
@@ -30,6 +31,9 @@ def handle_message(message: telebot.types.Message) -> None:
     bot.reply_to(message, "Sorry, I don't understand. /help for more info.")
     return
   value, media, description = get_expense_components(message.text)
+  
+  expense = Expense(value, media, description)  # Instantiate a new Expense object
+  expense.save()
   bot.reply_to(message, f"Value: {value}\nMedia: {media}\nDescription: {description}")
 
 bot.infinity_polling()
