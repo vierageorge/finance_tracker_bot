@@ -10,7 +10,7 @@ media_mapping = {
 }
 
 class Expense:
-  def __init__(self, description: str, value: int, media: str = None, date: str = None, category: str = None):
+  def __init__(self, media: str, description: str, value: int, date: str = None, category: str = None):
     self.description = description
     self.value = value
 

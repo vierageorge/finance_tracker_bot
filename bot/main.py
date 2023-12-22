@@ -30,9 +30,9 @@ def handle_message(message: telebot.types.Message) -> None:
   if not is_valid_expense_message(message.text):
     bot.reply_to(message, "Sorry, I don't understand. /help for more info.")
     return
-  value, media, description = get_expense_components(message.text)
+  media, description, value = get_expense_components(message.text)
   
-  expense = Expense(value, media, description)  # Instantiate a new Expense object
+  expense = Expense(media, description, value)  # Instantiate a new Expense object
   expense.save()
   bot.reply_to(message, f"Value: {value}\nMedia: {media}\nDescription: {description}")
 

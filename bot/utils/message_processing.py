@@ -15,4 +15,4 @@ def get_expense_components(text: str) -> tuple:
   value = int(match.group(1))
   media = match.group(2)
   description = match.group(3)
-  return (value, media, description)
+  return (media, description, value)
