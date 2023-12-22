@@ -6,6 +6,7 @@ default_media = 'RappiCard'
 
 media_mapping = {
   'e': 'Efectivo',
+  'd': 'Débito',
   'r': default_media
 }
 
@@ -22,3 +23,6 @@ class Expense:
 
   def save(self):
     save_expense(self.media, self.description, self.value, self.date, self.paid)
+
+  def __str__(self):
+    return f"Value: {self.value}\nMedia: {self.media}\nDescription: {self.description}\nDate: {self.date}"

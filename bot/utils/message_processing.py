@@ -10,7 +10,7 @@ def get_expense_components(text: str) -> tuple:
   Returns:
     tuple: A tuple containing the extracted value, media, and description components.
   """
-  pattern = r'^(\d{3,8})([re]?)(.*)'
+  pattern = r'^(\d{3,8})([red]?)(.*)'
   match = re.match(pattern, text)
   value = int(match.group(1))
   media = match.group(2)

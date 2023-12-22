@@ -34,6 +34,6 @@ def handle_message(message: telebot.types.Message) -> None:
   
   expense = Expense(media, description, value)  # Instantiate a new Expense object
   expense.save()
-  bot.reply_to(message, f"Value: {value}\nMedia: {media}\nDescription: {description}")
+  bot.reply_to(message, f"Expense saved!\n{expense}")
 
 bot.infinity_polling()
