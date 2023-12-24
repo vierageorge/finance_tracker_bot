@@ -17,7 +17,7 @@ configsheet = sheet_file.worksheet(CONFIG_SHEET_NAME)
 def save_expense(media: str, description: str, value: int, date: str, paid: str, category: str):
   factsheet.append_row(['Gasto',date, category, media, description, value, paid], value_input_option='USER_ENTERED')
 
-def get_categories() -> list[str]:
+def get_categories():
   configs = configsheet.get("CATEGORIA_MES")
   return [config[0] for config in configs[1:] if config[1] == 'TRUE']
 
