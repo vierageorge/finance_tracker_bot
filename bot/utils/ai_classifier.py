@@ -11,7 +11,8 @@ será la categoría, la cual siempre tendrá el formato TEXTO1|texto2. Sin impor
 a continuación. A continuación, las categorías, las cuales son un arreglo separado por punto y coma (;):"""
 
 contexts = [
-  "Mayra es quien hace el aseo en la casa"
+  "Mayra es quien hace el aseo en la casa",
+  "Hele es mi hija y Marco es su pediatra"
 ]
 
 def get_category(entry: str) -> str:

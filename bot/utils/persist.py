@@ -20,3 +20,7 @@ def save_expense(media: str, description: str, value: int, date: str, paid: str,
 def get_categories() -> list[str]:
   configs = configsheet.get("CATEGORIA_MES")
   return [config[0] for config in configs[1:] if config[1] == 'TRUE']
+
+def get_total_debt() -> int:
+  expenses = factsheet.get_all_records(value_render_option='UNFORMATTED_VALUE')
+  return sum([expense['Valor'] for expense in expenses if expense['TC_Pago'] == False and expense['Medio'] == 'RappiCard'])
