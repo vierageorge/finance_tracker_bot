@@ -1,5 +1,6 @@
 
 from utils.persist import save_expense
+from utils.ai_classifier import get_category
 from datetime import datetime
 
 default_media = 'RappiCard'
@@ -11,7 +12,7 @@ media_mapping = {
 }
 
 class Expense:
-  def __init__(self, media: str, description: str, value: int, date: str = None, category: str = None):
+  def __init__(self, media: str, description: str, value: int, date: str = None):
     self.description = description
     self.value = value
 
@@ -19,10 +20,14 @@ class Expense:
     self.paid = 'FALSE' if self.media == default_media else None
     
     self.date = date if date else datetime.now().strftime("%Y/%m/%d")
-    self.category = category
+    self.category = None
+    self.set_category()
+
+  def set_category(self):
+    self.category = get_category(self.description)
 
   def save(self):
-    save_expense(self.media, self.description, self.value, self.date, self.paid)
+    save_expense(self.media, self.description, self.value, self.date, self.paid, self.category)
 
   def __str__(self):
-    return f"Value: {self.value}\nMedia: {self.media}\nDescription: {self.description}\nDate: {self.date}"
+    return f"Value: {self.value}\nMedia: {self.media}\nDescription: {self.description}\nDate: {self.date}\nCategory: {self.category}"
