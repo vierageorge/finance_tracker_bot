@@ -6,5 +6,7 @@ Please start adding your expenses.
 NOT_VALID_USER_MESSAGE="Sorry, you are not authorized to use this bot."
 
 HELP_MESSAGE="""To add an expense, type the following:
-<amount> <category> <description>
-e.g. 100 food lunch with friends"""
+<amount>[red] <description> e.g. 1000d food lunch with friends
+r is default.
+
+/debt - get total debt"""
