@@ -1,8 +1,10 @@
 
 from utils.persist import save_expense
 from utils.ai_classifier import get_category
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
+timezone_offset = -5.0
+tzinfo = timezone(timedelta(hours=timezone_offset))
 default_media = 'RappiCard'
 
 media_mapping = {
@@ -19,7 +21,7 @@ class Expense:
     self.media = media_mapping.get(media, default_media)
     self.paid = 'FALSE' if self.media == default_media else None
     
-    self.date = date if date else datetime.now().strftime("%Y/%m/%d")
+    self.date = date if date else datetime.now(tzinfo).strftime("%Y/%m/%d")
     self.category = None
     self.set_category()
 
