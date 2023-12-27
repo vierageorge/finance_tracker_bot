@@ -24,3 +24,28 @@ def get_categories():
 def get_total_debt() -> int:
   expenses = factsheet.get_all_records(value_render_option='UNFORMATTED_VALUE')
   return sum([expense['Valor'] for expense in expenses if expense['TC_Pago'] == False and expense['Medio'] == 'RappiCard'])
+
+def get_monthly_expenses() -> str:
+  expenses = factsheet.get_all_records(value_render_option='UNFORMATTED_VALUE')
+  current_month_expenses = [expense for expense in expenses if expense['Current_Period'] == True]
+  category_totals = {}
+  for expense in current_month_expenses:
+    categoria = expense['Categoria']
+    valor = expense['Valor']
+
+    if categoria in category_totals:
+      category_totals[categoria] += valor
+    else:
+      category_totals[categoria] = valor
+
+  configs = configsheet.get("CATEGORIA_MES", value_render_option='UNFORMATTED_VALUE')
+  monthly_categories = [config[0] for config in configs[1:] if config[2] == True]
+
+  result = []
+  for category in monthly_categories:
+    if category not in category_totals:
+      result.append(f"{category}: ❌")
+      continue
+    result.append(f"{category}: ✅ {category_totals[category]}")
+
+  return '\n'.join(result)

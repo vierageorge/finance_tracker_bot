@@ -1,5 +1,11 @@
 from utils.persist import get_categories
 from openai import OpenAI
+from dotenv import load_dotenv
+from random import randint
+import os
+
+load_dotenv()
+ENV = os.environ.get('ENV')
 
 categories = get_categories()
 
@@ -16,6 +22,9 @@ contexts = [
 ]
 
 def get_category(entry: str) -> str:
+  if ENV == 'dev':
+    rand_i = randint(0, len(categories) - 1)
+    return categories[rand_i]
   try:
     chat_completion = client.chat.completions.create(
         messages=[
