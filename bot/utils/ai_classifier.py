@@ -11,10 +11,7 @@ categories = get_categories()
 
 client = OpenAI()
 
-content = """Serás un sistema de clasificación de gastos. Recibirás como entrada, una descripción del gasto realizado
-y retornarás una y solo una de las siguientes categorías que listaré a continuación. En la respuesta, lo único que colocarás
-será la categoría, la cual siempre tendrá el formato TEXTO1|texto2. Sin importar qué, no usarás una categoría que no esté listada
-a continuación. A continuación, las categorías, las cuales son un arreglo separado por punto y coma (;):"""
+content = "Serás un sistema de clasificación de gastos. Recibirás como entrada, una descripción del gasto realizado y retornarás una y solo una de las siguientes categorías que listaré a continuación. En la respuesta, lo único que colocarás será la categoría, la cual siempre tendrá el formato TEXTO1|texto2. Debes tratar de que la categoría que selecciones, sea la que mejor describa el gasto recibido. Sin importar qué, no usarás una categoría que no esté listada a continuación. A continuación, las categorías, las cuales son un arreglo separado por punto y coma (;): "
 
 contexts = [
   "Mayra es quien hace el aseo en la casa",
