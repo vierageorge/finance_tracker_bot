@@ -6,11 +6,13 @@ from datetime import datetime, timezone, timedelta
 timezone_offset = -5.0
 tzinfo = timezone(timedelta(hours=timezone_offset))
 default_media = 'RappiCard'
+credit_cards = ['Visa Infinite', 'RappiCard']
 
 media_mapping = {
   'e': 'Efectivo',
   'd': 'Débito',
-  'r': default_media
+  'r': 'RappiCard',
+  'v': 'Visa Infinite'
 }
 
 class Expense:
@@ -19,11 +21,14 @@ class Expense:
     self.value = value
 
     self.media = media_mapping.get(media, default_media)
-    self.paid = 'FALSE' if self.media == default_media else None
+    self.paid = 'FALSE' if self.is_credit_card() else None
     
     self.date = date if date else datetime.now(tzinfo).strftime("%Y/%m/%d")
     self.category = None
     self.set_category()
+  
+  def is_credit_card(self):
+    return self.media in credit_cards
 
   def set_category(self):
     self.category = get_category(self.description)
