@@ -14,8 +14,8 @@ sheet_file = sheet_service.open_by_key(EXPENSE_SHEET_ID)
 factsheet = sheet_file.worksheet(EXPENSES_SHEET_NAME)
 configsheet = sheet_file.worksheet(CONFIG_SHEET_NAME)
 
-def save_expense(media: str, description: str, value: int, date: str, paid: str, category: str):
-  factsheet.append_row(['Gasto',date, category, media, description, value, paid], value_input_option='USER_ENTERED')
+def save_expense(media: str, description: str, value: int, date: str, paid: str, category: str, id: str):
+  factsheet.append_row(['Gasto',date, category, media, description, value, paid, id], value_input_option='USER_ENTERED')
 
 def get_categories():
   configs = configsheet.get("CATEGORIA_MES")
