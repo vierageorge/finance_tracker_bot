@@ -1,4 +1,5 @@
 import re
+import logging
 
 def get_expense_components(text: str) -> tuple:
   """
@@ -10,9 +11,9 @@ def get_expense_components(text: str) -> tuple:
   Returns:
     tuple: A tuple containing the extracted value, media, and description components.
   """
-  pattern = r'^(\d{3,8})([redv]?)(.*)'
+  pattern = r'^([+-]?)(\d{1,6})\s(.+)'
   match = re.match(pattern, text)
-  value = int(match.group(1))
-  media = match.group(2)
+  sign = 1 if match.group(1) == '+' else -1
+  value = sign * int(match.group(2)) * 1000
   description = match.group(3)
-  return (media, description, value)
+  return (description, value)
