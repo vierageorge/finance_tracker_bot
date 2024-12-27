@@ -1,4 +1,4 @@
-from utils.persist import get_categories
+# from utils.persist import get_categories
 from openai import OpenAI
 from dotenv import load_dotenv
 from random import randint
@@ -7,7 +7,8 @@ import os
 load_dotenv()
 ENV = os.environ.get('ENV')
 
-categories = get_categories()
+# categories = get_categories()
+categories = []
 
 client = OpenAI()
 

@@ -1,5 +1,5 @@
 
-from utils.persist import save_expense
+# from utils.persist import save_expense
 from utils.ai_classifier import get_category
 from datetime import datetime, timezone, timedelta
 import uuid
@@ -36,7 +36,8 @@ class Expense:
     self.category = get_category(self.description)
 
   def save(self):
-    save_expense(self.media, self.description, self.value, self.date, self.paid, self.category, self.id)
+    pass
+    # save_expense(self.media, self.description, self.value, self.date, self.paid, self.category, self.id)
 
   def __str__(self):
     return f"Value: {self.value}\nMedia: {self.media}\nDescription: {self.description}\nDate: {self.date}\nCategory: {self.category}"

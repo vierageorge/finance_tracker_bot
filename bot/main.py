@@ -2,7 +2,6 @@ import os
 import telebot
 from dotenv import load_dotenv
 from utils.validations import is_valid_user, is_valid_expense_message
-from utils.persist import get_total_debt, get_monthly_expenses
 from utils.message_processing import get_expense_components
 from utils.messages import GREETING_MESSAGE, NOT_VALID_USER_MESSAGE, HELP_MESSAGE
 from utils.ai_data_extractor import analyze_image
