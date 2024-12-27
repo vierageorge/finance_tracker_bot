@@ -29,5 +29,5 @@ def is_valid_expense_message(message: str) -> bool:
     bool: True if the message is valid, False otherwise.
   """
 
-  pattern = r'^(\d{3,8})([red]?)(.*)'
+  pattern = r'^([+-]?)(\d{1,6})\s(.+)'
   return re.match(pattern, message) is not None
