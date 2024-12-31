@@ -6,6 +6,7 @@ load_dotenv()
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
+VALID_API_KEY = os.environ.get('VALID_API_KEY')
 
 app = Flask(__name__)
 
@@ -16,6 +17,17 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 def send_message(message: str) -> None:
   bot.send_message(CHAT_ID, message)
+
+
+
+def is_valid_api_key(key):
+  return key == VALID_API_KEY
+
+@app.before_request
+def check_api_key():
+  api_key = request.headers.get("x-api-key")
+  if not api_key or not is_valid_api_key(api_key):
+    return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.route('/send', methods=['POST'])
