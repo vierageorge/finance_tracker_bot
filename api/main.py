@@ -15,7 +15,7 @@ app = Flask(__name__)
 bot = telebot.TeleBot(BOT_TOKEN)
 
 def send_message(message: str) -> None:
-  bot.send_message(1765717834, message)
+  bot.send_message(CHAT_ID, message)
 
 
 @app.route('/send', methods=['POST'])
