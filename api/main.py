@@ -47,6 +47,10 @@ def send():
 
   except Exception as e:
     return jsonify({"error": str(e)}), 500
+  
+@app.route('/health', methods=['GET'])
+def health():
+  return jsonify({"status": "ok"}), 200
 
 if __name__ == '__main__':
   app.run(debug=True)
